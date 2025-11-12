@@ -1,5 +1,5 @@
 # stage 1: build the application
-FROM node:22.21.1-alpine3.21 AS builder
+FROM node:22.21.1-alpine3.21 AS build
 
 WORKDIR /app
 
@@ -9,13 +9,13 @@ RUN npm install
 
 COPY . .
 
+RUN npm run build
+
 # stage 2: run the application
-FROM node:22.21.1-alpine3.21
+FROM nginx:alpine3.22 AS runtime
 
-WORKDIR /app
+COPY --from=build /app/build /usr/share/nginx/html
 
-COPY --from=builder /app /app
+EXPOSE 80
 
-EXPOSE 3000
-
-ENTRYPOINT ["node", "app.js"]
+CMD ["nginx", "-g", "daemon off;"]
