@@ -6,8 +6,14 @@ docker compose up --build -d
 
 # Build images
 
-## server
+## backend
 
 ```sh
-docker build -f ./server/Dockerfile ./server
+docker build -f ./backend/Dockerfile ./backend
+```
+
+## frontend
+
+```sh
+docker build -f ./frontend/Dockerfile ./frontend
 ```
