@@ -17,3 +17,7 @@ docker build -f ./backend/Dockerfile ./backend
 ```sh
 docker build -f ./frontend/Dockerfile ./frontend
 ```
+
+## Обоснование выбранных библиотек
+
+lucide-react - для быстрого доступа к иконкам
