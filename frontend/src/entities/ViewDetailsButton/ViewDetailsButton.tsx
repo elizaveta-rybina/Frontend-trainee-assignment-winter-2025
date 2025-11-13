@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react' // опционально: иконка
+import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import styles from './ViewDetailsButton.module.scss'
 
