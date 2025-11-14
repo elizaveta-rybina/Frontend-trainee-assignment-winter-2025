@@ -1,24 +1,24 @@
-import type { AnyItem, ItemBase } from '@/shared'
+import type { ItemBase } from '@/shared'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const API_URL = 'http://localhost:3000/items'
 
-export const fetchItems = createAsyncThunk<AnyItem[]>(
+export const fetchItems = createAsyncThunk<ItemBase[]>(
 	'items/fetchItems',
 	async () => {
-		const response = await axios.get<AnyItem[]>(API_URL)
+		const response = await axios.get<ItemBase[]>(API_URL)
 		return response.data
 	}
 )
 
 export const createItem = createAsyncThunk<
-	AnyItem,
-	Omit<AnyItem, 'id'>,
+	ItemBase,
+	Omit<ItemBase, 'id'>,
 	{ rejectValue: { error: string } }
 >('items/createItem', async (itemData, { rejectWithValue }) => {
 	try {
-		const response = await axios.post<AnyItem>(API_URL, itemData)
+		const response = await axios.post<ItemBase>(API_URL, itemData)
 		return response.data
 	} catch (err: any) {
 		return rejectWithValue(err.response?.data || { error: 'Network error' })
@@ -26,12 +26,12 @@ export const createItem = createAsyncThunk<
 })
 
 export const updateItem = createAsyncThunk<
-	AnyItem,
+	ItemBase,
 	{ id: string; data: Partial<Omit<ItemBase, 'id' | 'type'>> },
 	{ rejectValue: { error: string } }
 >('items/updateItem', async ({ id, data }, { rejectWithValue }) => {
 	try {
-		const response = await axios.put<AnyItem>(`${API_URL}/${id}`, data)
+		const response = await axios.put<ItemBase>(`${API_URL}/${id}`, data)
 		return response.data
 	} catch (err: any) {
 		return rejectWithValue(err.response?.data || { error: 'Network error' })

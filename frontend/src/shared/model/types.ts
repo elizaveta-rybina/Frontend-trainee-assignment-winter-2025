@@ -37,8 +37,6 @@ export interface Service extends ItemBase {
 	cost: number
 }
 
-//export type AnyItem = RealEstate | Auto | Service
-
 export interface ItemsState<T extends ItemBase> {
 	items: T[]
 	status: 'idle' | 'loading' | 'succeeded' | 'failed'

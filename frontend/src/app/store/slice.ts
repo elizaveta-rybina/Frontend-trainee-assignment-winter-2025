@@ -1,4 +1,4 @@
-import type { AnyItem } from '@/shared'
+import type { ItemBase } from '@/shared'
 import {
 	createEntityAdapter,
 	createSlice,
@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit'
 import { createItem, deleteItem, fetchItems, updateItem } from './thunks'
 
-export const itemsAdapter = createEntityAdapter<AnyItem>()
+export const itemsAdapter = createEntityAdapter<ItemBase>()
 
 type AdditionalFields = {
 	status: 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -36,7 +36,7 @@ const itemsSlice = createSlice({
 		builder
 			.addCase(
 				fetchItems.fulfilled,
-				(state, action: PayloadAction<AnyItem[]>) => {
+				(state, action: PayloadAction<ItemBase[]>) => {
 					itemsAdapter.setAll(state, action.payload)
 					state.status = 'succeeded'
 					state.error = null
@@ -44,14 +44,14 @@ const itemsSlice = createSlice({
 			)
 			.addCase(
 				createItem.fulfilled,
-				(state, action: PayloadAction<AnyItem>) => {
+				(state, action: PayloadAction<ItemBase>) => {
 					itemsAdapter.addOne(state, action.payload)
 					state.error = null
 				}
 			)
 			.addCase(
 				updateItem.fulfilled,
-				(state, action: PayloadAction<AnyItem>) => {
+				(state, action: PayloadAction<ItemBase>) => {
 					itemsAdapter.upsertOne(state, action.payload)
 					state.error = null
 				}
