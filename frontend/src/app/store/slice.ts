@@ -1,3 +1,4 @@
+import type { AnyItem } from '@/shared'
 import {
 	createEntityAdapter,
 	createSlice,
@@ -5,7 +6,6 @@ import {
 	PayloadAction
 } from '@reduxjs/toolkit'
 import { createItem, deleteItem, fetchItems, updateItem } from './thunks'
-import type { AnyItem } from './types'
 
 export const itemsAdapter = createEntityAdapter<AnyItem>()
 

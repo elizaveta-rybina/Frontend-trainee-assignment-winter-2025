@@ -1,6 +1,6 @@
+import type { AnyItem, ItemBase } from '@/shared'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import type { AnyItem, ItemBase } from './types'
 
 const API_URL = 'http://localhost:3000/items'
 
