@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 
 // Вспомогательный компонент для прокрутки страницы вверх при навигации
-const ScrollToTop = () => {
+export const ScrollToTop = () => {
 	const { pathname } = useLocation()
 	const navigationType = useNavigationType()
 
@@ -14,5 +14,3 @@ const ScrollToTop = () => {
 
 	return null
 }
-
-export default ScrollToTop
