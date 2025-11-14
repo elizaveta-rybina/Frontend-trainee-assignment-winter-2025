@@ -1,0 +1,30 @@
+.showcase {
+	padding: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+
+	.title {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: #333;
+	}
+
+	.section {
+		margin-bottom: 3rem;
+		padding: 1.5rem;
+		border: 1px solid #e0e0e0;
+		border-radius: 8px;
+		background-color: #fafafa;
+
+		.sectionTitle {
+			font-size: 1.25rem;
+			margin-bottom: 1rem;
+			color: #555;
+		}
+	}
+
+	.customCard {
+		border: 2px solid #007bff;
+		border-radius: 12px;
+	}
+}
