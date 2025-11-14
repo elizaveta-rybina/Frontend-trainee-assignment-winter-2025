@@ -1,9 +1,7 @@
 import React from 'react'
 
-const ItemPage = () => {
+export const ItemPage = () => {
 	return (
 		<div>ItemPage</div>
 	)
 }
-
-export default ItemPage

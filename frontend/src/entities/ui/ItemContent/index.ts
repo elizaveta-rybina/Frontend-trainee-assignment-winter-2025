@@ -1,3 +1,3 @@
-export { default as AutoContent } from './AutoContent'
-export { default as RealEstateContent } from './RealEstateContent'
-export { default as ServiceContent } from './ServiceContent'
+export { AutoContent } from './AutoContent'
+export { RealEstateContent } from './RealEstateContent'
+export { ServiceContent } from './ServiceContent'

@@ -1,9 +1,9 @@
-import React from 'react'
+import { ItemCardShowcase } from '@/widgets/ItemCardShowcase'
 
-const ListPage = () => {
+export const ListPage = () => {
 	return (
-		<div>ListPage</div>
+		<div>
+			<ItemCardShowcase />
+		</div>
 	)
 }
-
-export default ListPage
