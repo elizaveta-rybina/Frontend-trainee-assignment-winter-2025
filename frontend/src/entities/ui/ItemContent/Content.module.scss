@@ -1,0 +1,13 @@
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+	font-size: 14px;
+	margin-top: 8px;
+
+	div {
+		strong {
+			color: #333;
+		}
+	}
+}
