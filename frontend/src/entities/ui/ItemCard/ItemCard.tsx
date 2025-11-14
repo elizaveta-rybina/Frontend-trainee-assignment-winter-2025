@@ -1,44 +1,41 @@
-import { AnyItem, ItemTypes } from '@/shared'
-import React, { JSX, memo } from 'react'
+import { Auto, ItemBase, ItemTypes, RealEstate, Service } from '@/shared'
+import React, { JSX } from 'react'
 import { AutoContent, RealEstateContent, ServiceContent } from '../ItemContent'
 import { ItemTextContent } from '../ItemTextContent/ItemTextContent'
 import { ItemTypeBadge } from '../ItemTypeBadge/ItemTypeBadge'
 import ViewDetailsButton from '../ViewDetailsButton/ViewDetailsButton'
 import cls from './ItemCard.module.scss'
 
-interface ItemCardProps {
-	item: AnyItem
-	onAction?: (item: AnyItem) => void
+type ItemCardProps<T extends ItemBase> = {
+	item: T
+	onAction?: (item: T) => void
 	actionLabel?: string
 	className?: string
 }
 
-//для разных типов объявлений рендерим разный контент
-const renderContent = (item: AnyItem): JSX.Element | null => {
-	switch (item.type) {
-		case ItemTypes.REAL_ESTATE:
-			return <RealEstateContent {...item} />
-		case ItemTypes.AUTO:
-			return <AutoContent {...item} />
-		case ItemTypes.SERVICES:
-			return <ServiceContent {...item} />
-		default:
-			return null
-	}
-}
+const isRealEstate = (it: ItemBase): it is RealEstate =>
+	it.type === ItemTypes.REAL_ESTATE
+const isAuto = (it: ItemBase): it is Auto => it.type === ItemTypes.AUTO
+const isService = (it: ItemBase): it is Service =>
+	it.type === ItemTypes.SERVICES
 
-const ItemCardComponent: React.FC<ItemCardProps> = ({
+function ItemCardComponent<T extends ItemBase>({
 	item,
 	onAction,
 	actionLabel = 'Подробнее',
 	className = ''
-}) => {
-	const content = renderContent(item)
+}: ItemCardProps<T>): JSX.Element {
+	const renderContent = (i: ItemBase) => {
+		if (isRealEstate(i)) return <RealEstateContent {...i} />
+		if (isAuto(i)) return <AutoContent {...i} />
+		if (isService(i)) return <ServiceContent {...i} />
+		return null
+	}
 
 	return (
 		<article
 			className={`${cls.card} ${className}`.trim()}
-			aria-labelledby={`item-${item.id}-title`} // для доступности
+			aria-labelledby={`item-${item.id}-title`}
 		>
 			<ItemTypeBadge type={item.type} className={cls.badge} />
 			<ItemTextContent
@@ -47,19 +44,19 @@ const ItemCardComponent: React.FC<ItemCardProps> = ({
 				location={item.location}
 				id={`item-${item.id}-title`}
 			>
-				{content}
+				{renderContent(item)}
 			</ItemTextContent>
 
-			<ViewDetailsButton
-				itemId={item.id}
-				onClick={() => onAction?.(item)}
-				aria-label={`Открыть ${item.name}`}
-			>
+			<ViewDetailsButton itemId={item.id} onClick={() => onAction?.(item)}>
 				{actionLabel}
 			</ViewDetailsButton>
 		</article>
 	)
 }
 
-// чтобы избежать лишних рендеров
-export const ItemCard = memo(ItemCardComponent)
+// экспорт с сохранением generic типизации для потребителей
+export const ItemCard = React.memo(ItemCardComponent) as unknown as <
+	T extends ItemBase
+>(
+	props: ItemCardProps<T>
+) => JSX.Element
