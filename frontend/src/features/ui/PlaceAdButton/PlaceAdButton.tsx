@@ -1,34 +1,27 @@
-import React, { ButtonHTMLAttributes, forwardRef } from 'react'
 import clsx from 'clsx'
+import { forwardRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import cls from './PlaceAdButton.module.scss'
 
-export interface PlaceAdButtonProps
-	extends ButtonHTMLAttributes<HTMLButtonElement> {
-	variant?: 'primary' | 'secondary'
-	size?: 'sm' | 'md'
+interface PlaceAdButtonProps {
+	className?: string
 }
 
 export const PlaceAdButton = forwardRef<HTMLButtonElement, PlaceAdButtonProps>(
-	(
-		{
-			className,
-			variant = 'primary',
-			size = 'sm',
-			children = 'Разместить объявление',
-			...rest
-		},
-		ref
-	) => {
+	({ className }, ref) => {
+		const navigate = useNavigate()
+
 		return (
 			<button
 				ref={ref}
-				className={clsx(cls.button, cls[variant], cls[size], className)}
-				{...rest}
+				className={clsx(cls.button, className)}
+				onClick={() => navigate('/form')}
 			>
-				{children}
+				Разместить объявление
 			</button>
 		)
 	}
 )
 
+// для корректного отображения в React DevTools
 PlaceAdButton.displayName = 'PlaceAdButton'
