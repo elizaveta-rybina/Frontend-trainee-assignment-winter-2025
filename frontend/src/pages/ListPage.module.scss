@@ -1,0 +1,19 @@
+.title {
+  grid-column: 1 / -1;
+  font-size: 24px;
+  margin: 0 0 8px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.listPage {
+  padding: 24px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

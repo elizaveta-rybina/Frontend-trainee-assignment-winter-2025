@@ -1,4 +1,3 @@
-// ViewDetailsButton.module.scss
 .view-details-button {
 	display: inline-flex;
 	align-items: center;
@@ -51,7 +50,6 @@
 	}
 
 	@media (max-width: 640px) {
-		// мобильные
 		padding: 6px 12px;
 		font-size: 13px;
 		gap: 4px;

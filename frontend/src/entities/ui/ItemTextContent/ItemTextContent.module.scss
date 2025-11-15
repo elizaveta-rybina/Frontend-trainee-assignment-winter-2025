@@ -1,7 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 10px;
 	flex: 1;
 }
 
@@ -9,12 +9,13 @@
 	margin: 0;
 	font-size: 16px;
 	font-weight: 600;
+	color: #000000;
 }
 
 .description {
 	margin: 0;
 	font-size: 14px;
-	color: #555;
+	color: #3c424b;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -24,11 +25,11 @@
 .location {
 	margin: 0;
 	font-size: 13px;
-	color: #777;
+	color: #6b7280;
 }
 
 .details {
 	margin-top: 8px;
 	padding-top: 8px;
-	border-top: 1px dashed #ddd;
+	border-top: 1px dashed #e5e7eb;
 }
